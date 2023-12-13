@@ -12,11 +12,13 @@ FetchContent_Declare(
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
 FetchContent_MakeAvailable(googletest)
+
 enable_testing()
 
 add_executable(
-        BlackJackLab main.cpp
+        BlackJackLab
         IBlackjackStrategy.cpp IBlackjackStrategy.h
         Player.h Player.cpp
         Card.cpp Card.h
@@ -25,12 +27,15 @@ add_executable(
         gameLogic.cpp
         Dealer.cpp
         Dealer.h
-        gameLogic.h)
+        gameLogic.h
+        main.cpp
+)
 
 target_link_libraries(
-        blackjack_test
+        BlackJackLab
         GTest::gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(blackjack_test)
+
+gtest_discover_tests(blackjack_test.cpp)

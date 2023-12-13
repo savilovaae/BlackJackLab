@@ -2,6 +2,10 @@
 
 Card::Card(Suit suit, Face face) : suit(Hearts), face(Ace), value(1) {}
 
+Card::~Card() {
+    delete this;
+}
+
 Card::Face Card::getFace() {
     return face;
 }
@@ -10,13 +14,13 @@ Card::Suit Card::getSuit() {
     return suit;
 }
 
-int Card::getValue() {
+int Card::getValue() const {
     return calculateValue(this->face);
 }
 
 std::string Card::printCard() {
     std::string suitStr, faceStr;
-    switch (this.suit) {
+    switch (this->suit) {
         case Hearts:
             suitStr = "Hearts";
             break;
@@ -29,7 +33,7 @@ std::string Card::printCard() {
         default:
             suitStr = "Spades";
     }
-    switch (this.face) {
+    switch (this->face) {
         case Ace:
             faceStr = "Ace";
             break;
@@ -71,3 +75,4 @@ std::string Card::printCard() {
     }
     return faceStr + " " + suitStr;
 }
+

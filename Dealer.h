@@ -12,12 +12,12 @@ public:
 
 class SimpleDealer : Dealer {
 public:
-    Dealer() = default;
+    SimpleDealer() = default;
+    ~SimpleDealer();
     Card giveCard();
 private:
     static const int deckSize = 10;
 };
-
 
 /*
 class OneDeckDealer : Dealer {

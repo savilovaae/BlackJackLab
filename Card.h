@@ -1,7 +1,7 @@
 #ifndef BLACKJACK_CARD_H
 #define BLACKJACK_CARD_H
 
-#import "string"
+#include <string>
 
 class Card {
 public:
@@ -20,8 +20,7 @@ public:
 
     Face getFace();
 
-    int getValue();
-
+    [[nodiscard]] int getValue() const;
 
     std::string printCard();
 

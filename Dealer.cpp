@@ -1,8 +1,9 @@
 #include "Dealer.h"
 #include <random>
 
+
 Card SimpleDealer::giveCard() {
-    return static_cast<Card>(Hearts, rand() % deckSize);
+    return Card(Card::Suit::Hearts, static_cast<Card::Face>(rand() % deckSize));
 }
 
 
