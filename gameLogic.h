@@ -1,6 +1,7 @@
 #ifndef BLACKJACK_GAMELOGIC_H
 #define BLACKJACK_GAMELOGIC_H
 
+#include <list>
 #include "Dealer.h"
 #include "Player.h"
 #include "IBlackjackStrategy.h"
@@ -11,15 +12,15 @@ public:
         detailed, fast, tournament
     };
 
-    Game(Dealer dealer, std::list <IBlackjackStrategy> strategies, Mode mode);
+    Game(Dealer dealer, const std::list <IBlackjackStrategy>& strategies, Mode mode);
 
     void run();
 
 private:
     void runFast();
-    void runDetailed();
+    void runDetailed(Player first, Player second);
     void runTournament();
-    Dealer dealer;
+    Dealer *dealer;
     std::list <IBlackjackStrategy> strategies;
     Mode mode;
 };

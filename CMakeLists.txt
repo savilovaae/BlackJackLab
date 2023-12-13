@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.23)
 project(BlackJackLab)
 
 set(CMAKE_CXX_STANDARD 23)
-
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
@@ -18,24 +17,20 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(
-        BlackJackLab
-        IBlackjackStrategy.cpp IBlackjackStrategy.h
+        blackjack_test
+        IBlackjackStrategy.h IBlackjackStrategy.cpp
         Player.h Player.cpp
-        Card.cpp Card.h
-        Deck.cpp Deck.h
+        Card.h Card.cpp
+        Deck.h Deck.cpp
+        gameLogic.h gameLogic.cpp
+        Dealer.h Dealer.cpp
         blackjack_test.cpp
-        gameLogic.cpp
-        Dealer.cpp
-        Dealer.h
-        gameLogic.h
-        main.cpp
 )
 
 target_link_libraries(
-        BlackJackLab
+        blackjack_test
         GTest::gtest_main
 )
 
 include(GoogleTest)
-
-gtest_discover_tests(blackjack_test.cpp)
+gtest_discover_tests(blackjack_test)

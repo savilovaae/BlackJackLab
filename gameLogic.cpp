@@ -22,21 +22,19 @@ input :
 
  турнир: K players, all of them play with somebody else and we need to find the winner of tournament
 */
-
+#include <iostream>
 #include "gameLogic.h"
 
-Game::Game(Dealer dealer, std::list <IBlackjackStrategy> strategies, Mode mode) : dealer(dealer), mode(mode) {
-    switch (mode) : {
+Game::Game(Dealer dealer, const std::list <IBlackjackStrategy>& strategies, Mode mode) : dealer(&dealer), mode(mode) {
+    switch (mode) {
         case detailed:
             if (strategies.size() != 2) {
                 throw std::invalid_argument("Стратегий должно быть 2");
-            }
-        break;
+            } break;
         case fast:
             if (strategies.size() != 2) {
                 throw std::invalid_argument("Стратегий должно быть 2");
-            }
-        break;
+            } break;
         case tournament:
             break;
     }
@@ -48,37 +46,41 @@ void Game::run() {
     auto player2 = new Player();
     switch (mode) {
         case detailed:
-            runDetailed(player1, player2);
+            Game::runDetailed(*player1, *player2);
             break;
         case fast:
-            runFast(player1, player2);
+            //runFast(player1, player2);
             break;
         case tournament:
             break;
     }
 }
 
+void Game::runFast() {
+
+}
+
 void Game::runDetailed(Player player1, Player player2) {
-    Card tmp = nullptr;
+    auto tmp = *new Card(Card::Hearts, Card::Two);
     while (player1.getFlag() && player2.getFlag()) {
-        tmp = dealer.giveCard();
+        tmp = dealer->giveCard();
         player1.takeCard(tmp); //первый игрок взял карту
-        std::cout << "Первый игрок взял карту " + tmp.printCard() << std:endl;
-        tmp = dealer.giveCard();
-        player2.takeCard(dealer.giveCard()); //второй игрок взял карту
-        std::cout << "Второй игрок взял карту " + tmp.printCard() << std:endl;
+        std::cout << "Первый игрок взял карту " + tmp.printCard() << std::endl;
+        tmp = dealer->giveCard();
+        player2.takeCard(tmp); //второй игрок взял карту
+        std::cout << "Второй игрок взял карту " + tmp.printCard() << std::endl;
     }
 
     while (player1.getFlag()) {
-        tmp = dealer.giveCard();
+        tmp = dealer->giveCard();
         player1.takeCard(tmp); //первый игрок взял карту
-        std::cout << "Первый игрок взял карту " + tmp.printCard() << std:endl;
+        std::cout << "Первый игрок взял карту " + tmp.printCard() << std::endl;
     }
 
     while (player2.getFlag()) {
-        tmp = dealer.giveCard();
-        player2.takeCard(dealer.giveCard()); //второй игрок взял карту
-        std::cout << "Второй игрок взял карту " + tmp.printCard() << std:endl;
+        tmp = dealer->giveCard();
+        player2.takeCard(dealer->giveCard()); //второй игрок взял карту
+        std::cout << "Второй игрок взял карту " + tmp.printCard() << std::endl;
     }
     //конец игры тут
     if (player1.getScore() > player1.getScore()) {

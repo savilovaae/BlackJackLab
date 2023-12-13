@@ -3,7 +3,7 @@
 
 
 Card SimpleDealer::giveCard() {
-    return Card(Card::Suit::Hearts, static_cast<Card::Face>(rand() % deckSize));
+    return Card(Card::Hearts, Card::Two);
 }
 
 

@@ -8,7 +8,7 @@ class Player {
 public:
     Player() = default;
 
-    Player(const IBlackjackStrategy *strategy) : score(0), strategy(strategy), flag(true) {}
+    [[maybe_unused]] Player(class IBlackjackStrategy *strategy) : score(0), strategy(strategy), flag(true) {}
 
     void takeCard(const Card &card);
 
@@ -25,7 +25,7 @@ public:
 private:
     std::vector <Card> hand;
     int score;
-    const IBlackjackStrategy *strategy;
+    class IBlackjackStrategy *strategy;
     bool flag;
 };
 

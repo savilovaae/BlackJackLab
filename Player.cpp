@@ -11,7 +11,7 @@ int Player::getScore() const {
 }
 
 bool Player::decideTakeCard(const Card &dealerCard) {
-    flag = strategy->shouldTakeCard(*this, dealerCard);
+    flag = strategy->shouldTakeCard(*this, const_cast<Card &>(dealerCard));
     return flag;
 }
 
@@ -29,5 +29,5 @@ void Player::reset() {
 }
 
 bool Player::getFlag() {
-
+    return flag;
 }
