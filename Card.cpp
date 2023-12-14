@@ -1,26 +1,26 @@
 #include "Card.h"
 
-Card::Card(Suit suit, Face face) : suit(Hearts), face(Ace), value(1) {}
+Card::Card() : suit_(Hearts), face_(Ace), value_(1) {}
 
-Card::~Card() {
-    delete this;
-}
+Card::Card(Suit suit, Face face) : suit_(suit), face_(face), value_(calculateValue(face)) {}
+
+Card::~Card() {}
 
 Card::Face Card::getFace() {
-    return face;
+    return face_;
 }
 
 Card::Suit Card::getSuit() {
-    return suit;
+    return suit_;
 }
 
 int Card::getValue() const {
-    return calculateValue(this->face);
+    return calculateValue(this->face_);
 }
 
 std::string Card::printCard() {
     std::string suitStr, faceStr;
-    switch (this->suit) {
+    switch (this->suit_) {
         case Hearts:
             suitStr = "Hearts";
             break;
@@ -33,7 +33,7 @@ std::string Card::printCard() {
         default:
             suitStr = "Spades";
     }
-    switch (this->face) {
+    switch (this->face_) {
         case Ace:
             faceStr = "Ace";
             break;

@@ -12,6 +12,8 @@ public:
         Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
     };
 
+    Card();
+
     Card(Suit suit, Face face);
 
     ~Card();
@@ -26,9 +28,9 @@ public:
 
 
 private:
-    int value;
-    Face face;
-    Suit suit;
+    int value_;
+    Face face_;
+    Suit suit_;
 
     static int calculateValue(Face face) {
         if (face >= Two && face <= Ten) {
