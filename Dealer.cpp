@@ -3,8 +3,11 @@
 
 
 Card SimpleDealer::giveCard() {
-    return Card(Card::Hearts, Card::Two);
+    return {Card::Hearts, Card::Two};
 }
+
+SimpleDealer::~SimpleDealer() = default;
+
 
 
 
@@ -38,3 +41,8 @@ Card Deck::dealCard() {
     }
     return cards[currentCardIndex++];
 }*/
+Dealer::~Dealer() = default;
+
+Card Dealer::giveCard() {
+    return {Card::Hearts, Card::Two};
+}

@@ -26,4 +26,14 @@ TEST(Card, constructor) {
     EXPECT_EQ(NineSpades.getValue(), 9);
 }
 
+TEST(SimpleDealer, constructor) {
+    SimpleDealer testDealer;
+    Card testCard = testDealer.giveCard();
+    EXPECT_EQ(testCard.getFace(), Card::Face::Two);
+    EXPECT_EQ(testCard.getSuit(), Card::Suit::Hearts);
+}
 
+TEST(Player, constructor) {
+    Player first;
+
+}

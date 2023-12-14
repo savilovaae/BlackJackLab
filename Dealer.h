@@ -13,7 +13,7 @@ public:
 class SimpleDealer : Dealer {
 public:
     SimpleDealer() = default;
-    ~SimpleDealer();
+    ~SimpleDealer() override;
     Card giveCard() override;
 private:
     static const int deckSize = 10;
