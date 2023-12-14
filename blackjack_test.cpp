@@ -35,5 +35,9 @@ TEST(SimpleDealer, constructor) {
 
 TEST(Player, constructor) {
     Player first;
+    EXPECT_EQ(first.getScore(), 0) << "Player was created with error";
+    EXPECT_EQ(first.getFlag(), true);
+
+
 
 }

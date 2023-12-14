@@ -1,7 +1,3 @@
-//
-// Created by WonderKid on 24.11.2023.
-//
-
 #include "IBlackjackStrategy.h"
 
 bool AlwaysHitStrategy::shouldTakeCard(Player &player, Card &dealerCard) {

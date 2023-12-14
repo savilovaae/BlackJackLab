@@ -24,9 +24,9 @@ public:
 
 private:
     std::vector <Card> hand;
-    int score;
+    int score = 0;
     class IBlackjackStrategy *strategy;
-    bool flag;
+    bool flag = true;
 };
 
 #endif //BLACKJACK_PLAYER_H
