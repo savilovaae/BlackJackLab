@@ -1,17 +1,17 @@
 #include "Dealer.h"
 #include <random>
 
+Dealer::~Dealer() = default;
 
-Card SimpleDealer::giveCard() {
+Card Dealer::giveCard() {
     return {Card::Hearts, Card::Two};
 }
 
 SimpleDealer::~SimpleDealer() = default;
 
-
-
-
-
+Card SimpleDealer::giveCard() {
+    return {Card::Hearts, Card::Two};
+}
 /*
 Card OneDeckDealer::giveCard() {
     return
@@ -41,8 +41,3 @@ Card Deck::dealCard() {
     }
     return cards[currentCardIndex++];
 }*/
-Dealer::~Dealer() = default;
-
-Card Dealer::giveCard() {
-    return {Card::Hearts, Card::Two};
-}

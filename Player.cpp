@@ -1,33 +1,29 @@
 #include "Player.h"
 
-
-void Player::takeCard(const Card &card) {
-    hand.push_back(card);
-    score = calculateScore(); // Пересчет очков после добавления карты
+bool Player::getFlag() const {
+    return flag_;
 }
 
 int Player::getScore() const {
-    return score;
+    return score_;
 }
 
-bool Player::decideTakeCard(const Card &dealerCard) {
-    flag = strategy->shouldTakeCard(*this, const_cast<Card &>(dealerCard));
-    return flag;
+void Player::takeCard(const Card &card) {
+    hand_.push_back(card);
+    score_ = calculateScore();
+    if (strategy_) flag_ = strategy_->shouldTakeCard(*this);
 }
 
 int Player::calculateScore() {
-    int newScore = 0;
-    for (const auto& card : hand) {
-        newScore += card.getValue();
+    int score = 0;
+    for (const auto &card: hand_) {
+        score += card.getValue();
     }
-    return newScore;
+    return score;
 }
 
 void Player::reset() {
-    hand.clear();
-    score = 0;
+    hand_.clear();
+    score_ = 0;
 }
 
-bool Player::getFlag() {
-    return flag;
-}

@@ -6,7 +6,7 @@
 
 class IBlackjackStrategy {
 public:
-    virtual bool shouldTakeCard(class Player &player, Card &dealerCard);
+    virtual bool shouldTakeCard(class Player &player);
 
     virtual ~IBlackjackStrategy() {}
 };
@@ -14,17 +14,17 @@ public:
 
 class AlwaysHitStrategy : public IBlackjackStrategy {
 public:
-    bool shouldTakeCard(class Player &player, Card &dealerCard) override;
+    bool shouldTakeCard(class Player &player) override;
 };
 
 class NeverBustStrategy : public IBlackjackStrategy {
 public:
-    bool shouldTakeCard(Player &player, Card &dealerCard) override;
+    bool shouldTakeCard(Player &player) override;
 };
 
 class DealerBasedStrategy : public IBlackjackStrategy {
 public:
-    bool shouldTakeCard(Player &player, Card &dealerCard) override;
+    bool shouldTakeCard(Player &player) override;
 };
 
 #endif //BLACKJACK_IBLACKJACKSTRATEGY_H

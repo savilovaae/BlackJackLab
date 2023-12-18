@@ -1,11 +1,13 @@
 #ifndef BLACKJACK_DEALER_H
 #define BLACKJACK_DEALER_H
+
 #include "Deck.h"
 #include "Card.h"
 
 class Dealer {
 public:
     virtual ~Dealer();
+
     virtual Card giveCard();
 };
 
@@ -13,10 +15,13 @@ public:
 class SimpleDealer : Dealer {
 public:
     SimpleDealer() = default;
+
     ~SimpleDealer() override;
+
     Card giveCard() override;
+
 private:
-    static const int deckSize = 10;
+    static const int deckSize_ = 10;
 };
 
 /*

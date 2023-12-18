@@ -25,7 +25,7 @@ input :
 #include <iostream>
 #include "gameLogic.h"
 
-Game::Game(Dealer dealer, const std::list <IBlackjackStrategy>& strategies, Mode mode) : dealer(&dealer), mode(mode) {
+Game::Game(const Dealer& dealer, std::list <IBlackjackStrategy>& strategies, Mode mode) : dealer_(dealer), mode_(mode) {
     switch (mode) {
         case detailed:
             if (strategies.size() != 2) {
@@ -44,7 +44,7 @@ Game::Game(Dealer dealer, const std::list <IBlackjackStrategy>& strategies, Mode
 void Game::run() {
     auto player1 = new Player();
     auto player2 = new Player();
-    switch (mode) {
+    switch (mode_) {
         case detailed:
             Game::runDetailed(*player1, *player2);
             break;
@@ -63,26 +63,26 @@ void Game::runFast() {
 void Game::runDetailed(Player player1, Player player2) {
     auto tmp = *new Card(Card::Hearts, Card::Two);
     while (player1.getFlag() && player2.getFlag()) {
-        tmp = dealer->giveCard();
-        player1.takeCard(tmp); //первый игрок взял карту
+        tmp = dealer_.giveCard();
+        player1.takeCard(tmp);
         std::cout << "Первый игрок взял карту " + tmp.printCard() << std::endl;
-        tmp = dealer->giveCard();
-        player2.takeCard(tmp); //второй игрок взял карту
+        tmp = dealer_.giveCard();
+        player2.takeCard(tmp);
         std::cout << "Второй игрок взял карту " + tmp.printCard() << std::endl;
     }
 
     while (player1.getFlag()) {
-        tmp = dealer->giveCard();
-        player1.takeCard(tmp); //первый игрок взял карту
+        tmp = dealer_.giveCard();
+        player1.takeCard(tmp);
         std::cout << "Первый игрок взял карту " + tmp.printCard() << std::endl;
     }
 
     while (player2.getFlag()) {
-        tmp = dealer->giveCard();
-        player2.takeCard(dealer->giveCard()); //второй игрок взял карту
+        tmp = dealer_.giveCard();
+        player2.takeCard(dealer_.giveCard());
         std::cout << "Второй игрок взял карту " + tmp.printCard() << std::endl;
     }
-    //конец игры тут
+
     if (player1.getScore() > player1.getScore()) {
         std::cout << "Первый игрок победил" << std::endl;
     } else if (player1.getScore() < player2.getScore()) {
@@ -91,3 +91,4 @@ void Game::runDetailed(Player player1, Player player2) {
         std::cout << "Игроки сыграли вничью" << std::endl;
     }
 }
+

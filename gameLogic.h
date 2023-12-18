@@ -11,8 +11,7 @@ public:
     enum Mode {
         detailed, fast, tournament
     };
-
-    Game(Dealer dealer, const std::list <IBlackjackStrategy>& strategies, Mode mode);
+    Game(const Dealer& dealer_, std::list <IBlackjackStrategy>& strategies_, Mode mode_);
 
     void run();
 
@@ -20,9 +19,9 @@ private:
     void runFast();
     void runDetailed(Player first, Player second);
     void runTournament();
-    Dealer *dealer;
-    std::list <IBlackjackStrategy> strategies;
-    Mode mode;
+    Dealer dealer_;
+    std::list <IBlackjackStrategy> strategies_;
+    Mode mode_;
 };
 
 #endif //BLACKJACK_GAMELOGIC_H

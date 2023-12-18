@@ -8,25 +8,23 @@ class Player {
 public:
     Player() = default;
 
-    [[maybe_unused]] Player(class IBlackjackStrategy *strategy) : score(0), strategy(strategy), flag(true) {}
+    Player(class IBlackjackStrategy *strategy) : score_(0), strategy_(strategy), flag_(true) {}
 
-    void takeCard(const Card &card);
+    bool getFlag() const;
 
     int getScore() const;
 
-    bool decideTakeCard(const Card &dealerCard);
+    void takeCard(const Card &card);
 
-    int calculateScore(); //
+    int calculateScore();
 
-    void reset(); // -
-
-    bool getFlag();
+    void reset();
 
 private:
-    std::vector <Card> hand;
-    int score = 0;
-    class IBlackjackStrategy *strategy;
-    bool flag = true;
+    std::vector<Card> hand_;
+    int score_ = 0;
+    bool flag_ = true;
+    class IBlackjackStrategy *strategy_ = nullptr;
 };
 
 #endif //BLACKJACK_PLAYER_H

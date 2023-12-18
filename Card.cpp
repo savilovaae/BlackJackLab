@@ -19,60 +19,84 @@ int Card::getValue() const {
 }
 
 std::string Card::printCard() {
-    std::string suitStr, faceStr;
-    switch (this->suit_) {
+    return printFace(this->face_) + " " + printSuit(this->suit_);
+}
+
+std::string Card::printSuit(Suit suit) {
+    std::string sSuit;
+    switch (suit) {
         case Hearts:
-            suitStr = "Hearts";
+            sSuit = "Hearts";
             break;
         case Diamonds:
-            suitStr = "Diamonds";
+            sSuit = "Diamonds";
             break;
         case Clubs:
-            suitStr = "Clubs";
+            sSuit = "Clubs";
             break;
         default:
-            suitStr = "Spades";
+            sSuit = "Spades";
     }
-    switch (this->face_) {
+    return sSuit;
+
+}
+
+std::string Card::printFace(Face face) {
+    std::string sFace;
+    switch (face) {
         case Ace:
-            faceStr = "Ace";
+            sFace = "Ace";
             break;
         case Two:
-            faceStr = "Two";
+            sFace = "Two";
             break;
         case Three:
-            faceStr = "Three";
+            sFace = "Three";
             break;
         case Four:
-            faceStr = "Four";
+            sFace = "Four";
             break;
         case Five:
-            faceStr = "Five";
+            sFace = "Five";
             break;
         case Six:
-            faceStr = "Six";
+            sFace = "Six";
             break;
         case Seven:
-            faceStr = "Seven";
+            sFace = "Seven";
             break;
         case Eight:
-            faceStr = "Eight";
+            sFace = "Eight";
             break;
         case Nine:
-            faceStr = "Nine";
+            sFace = "Nine";
             break;
         case Ten:
-            faceStr = "Ten";
+            sFace = "Ten";
             break;
         case Jack:
-            faceStr = "Jack";
+            sFace = "Jack";
             break;
         case Queen:
-            faceStr = "Queen";
+            sFace = "Queen";
             break;
         default:
-            faceStr = "King";
+            sFace = "King";
     }
-    return faceStr + " " + suitStr;
+    return sFace;
+
 }
+
+int Card::calculateValue(Card::Face face) {
+    if (face >= Two && face <= Ten) {
+        return static_cast<int>(face);
+    } else if (face >= Jack && face <= King) {
+        return 10;
+    } else if (face == Ace) {
+        return 1;
+    }
+    return 0;
+}
+
+
 
